@@ -34,14 +34,13 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String address, long adharno, long contactno, String department, String designation, LocalDate dob, int eid, String email, double exp, String firstname, String gender, LocalDate joiningdate, String lastname, String panno, String profile, String reportingmanager, double salary, String status) {
+    public Employee(String address, long adharno, long contactno, String department, String designation, LocalDate dob, String email, double exp, String firstname, String gender, LocalDate joiningdate, String lastname, String panno, String profile, String reportingmanager, double salary, String status) {
         this.address = address;
         this.adharno = adharno;
         this.contactno = contactno;
         this.department = department;
         this.designation = designation;
         this.dob = dob;
-        this.eid = eid;
         this.email = email;
         this.exp = exp;
         this.firstname = firstname;
