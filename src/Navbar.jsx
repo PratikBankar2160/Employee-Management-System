@@ -6,6 +6,8 @@ export default function Navbar() {
     <div>
         <nav>
             <li><Link to={"/add"}>Add Employee</Link></li>
+            <li><Link to={"/all"}>All Employee</Link></li>
+            <li><Link to={"/update"}>Update Employee</Link></li>
         </nav>
     </div>
   )
