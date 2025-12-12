@@ -73,4 +73,20 @@ public class EmployeeService {
         return true;
     }
 
+    public List<Employee> findByFirstName(String name){
+        return repo.findByFirstname(name);
+    }
+
+    public List<Employee> findByLastName(String name){
+        return repo.findByLastname(name);
+    }
+
+    public List<Employee> findByDesignation(String name){
+        return repo.findByDesignation(name);
+    }
+
+    public List<Employee> findByDepartment(String name){
+        return repo.findByDepartment(name);
+    }
+
 }
