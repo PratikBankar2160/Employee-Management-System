@@ -2,12 +2,13 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function UpdateEmployee() {
 
     let { id } = useParams();
 
-
+    let navigate = useNavigate();
 
     const [employee, setEmployee] = useState({
         firstname: "",
@@ -35,13 +36,14 @@ export default function UpdateEmployee() {
 
     const handleProfile = (e) => {
         const file = e.target.files[0];
+        let fullPath = `/img/${file.name}`;
         if (!file) return;
 
         const preview = URL.createObjectURL(file);
 
         setEmployee({
             ...employee,
-            profile: file,
+            profile: fullPath,
             previewImage: preview
         });
     };
@@ -55,6 +57,7 @@ export default function UpdateEmployee() {
             .then((res) => {
                 setEmployee(res.data);
                 alert(res.data)
+                navigate(-1)
             })
             .catch((err) => {
                 alert("Update wrong")
@@ -65,7 +68,6 @@ export default function UpdateEmployee() {
         axios.get(`http://localhost:8080/findById/${id}`)
             .then((res) => {
                 setEmployee(res.data)
-
             })
             .catch((err) => {
                 if (err.response) {

@@ -4,11 +4,30 @@ import { Link } from 'react-router-dom'
 export default function Navbar() {
   return (
     <div>
-        <nav>
-            <li><Link to={"/add"}>Add Employee</Link></li>
-            <li><Link to={"/all"}>All Employee</Link></li>
-            <li><Link to={"/update"}>Update Employee</Link></li>
-        </nav>
+      <nav className="navbar navbar-expand-lg navbar-light bg-primary">
+        <div className="container-fluid">
+          <a className="navbar-brand text-light fs-3" href="/">Employee Management System.</a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+              <li className="nav-item"><Link to={"/"} className="nav-link active text-light fs-5" aria-current="page">Home</Link></li>
+              <li className="nav-item"><Link to={"/add"} className="nav-link active text-light fs-5" aria-current="page">Add Employee</Link></li>
+              <li className="nav-item"><Link to={"/all"} className="nav-link active text-light fs-5" aria-current="page">All Employee</Link></li>
+              <li className="nav-item"><Link to={"/search"} className="nav-link active text-light fs-5" aria-current="page">Search Employee</Link></li>
+
+            </ul>
+            <form className="d-flex">
+              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+              <button className="btn btn-outline-success text-light fs-5" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
     </div>
   )
 }
+
+// seraching byfirstName,lastname
