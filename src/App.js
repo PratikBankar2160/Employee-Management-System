@@ -3,23 +3,34 @@ import AddEmployee from './AddEmployee';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Navbar from './Navbar';
 import AllEmployee from './AllEmployee';
 import UpdateEmployee from './UpdateEmployee';
 import SearchEmployee from './SearchEmployee';
-
+import AdminDashboard from './AdminDashboard';
+import About_us from './About_us';
+import Contact_us from './Contact_us';
+import Service from './Service';
+import Home from './Home';
+import EmployeeDashboard from './EmployeeDashboard';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-      <Navbar></Navbar>
+      <AdminDashboard/>
         <Routes>
+          <Route path='/home' element={<Home></Home>}></Route>
           <Route path='/add' element={<AddEmployee></AddEmployee>}></Route>
           <Route path='/all' element={<AllEmployee></AllEmployee>}></Route>
           <Route path='/update/:id' element={<UpdateEmployee></UpdateEmployee>}></Route>
           <Route path='/search' element={<SearchEmployee></SearchEmployee>}></Route>
+          <Route path='/about_us' element={<About_us></About_us>}></Route>
+          <Route path='/contact_us' element={<Contact_us></Contact_us>}></Route>
+          <Route path='/services' element={<Service></Service>}></Route>
+          <Route path='/employee' element={<EmployeeDashboard></EmployeeDashboard>}></Route>
+          <Route path="*" element={<h1>404 Page not found</h1>} />
         </Routes>
+        
       </BrowserRouter>
     </div>
   );

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
-export default function AllEmployee() {
+export default function EmployeeDashboard() {
 
     let [searchResult, setSearchResult] = useState([]);
     const [searchFirstName, setSearchFirstName] = useState("");
@@ -10,7 +9,6 @@ export default function AllEmployee() {
     let [serachDesignation, setSerachDesignation] = useState("");
     let [searchDepartment, setSearchDepartment] = useState("");
 
-    let navigate = useNavigate();
     let [Employee, setEmployee] = useState([]);
 
     useEffect(() => {
@@ -18,18 +16,6 @@ export default function AllEmployee() {
             .then((res) => setEmployee(res.data))
             .catch(() => alert("Error"));
     }, []);
-
-    let Delete1 = (id) => {
-        axios.delete(`http://localhost:8080/deleteById/${id}`)
-            .then(() => {
-                alert("Deleted Successfully");
-                setEmployee(Employee.filter((emp) => emp.eid !== id));
-            })
-            .catch((err) => {
-                alert("Something went wrong");
-                console.log(err);
-            });
-    };
 
     let searchByFirstName = (e) => {
         axios.get(`http://localhost:8080/findByFirstName/${searchFirstName}`)
@@ -137,14 +123,6 @@ export default function AllEmployee() {
                                     <p>Email: <strong>{e.email}</strong></p>
                                     <p>DOB: <strong>{e.dob}</strong></p>
                                 </div>
-
-                                <button className="btn btn-danger me-2" onClick={() => Delete1(e.eid)}>
-                                    Delete
-                                </button>
-
-                                <button className="btn btn-primary" onClick={() => navigate(`/update/${e.eid}`)}>
-                                    Update
-                                </button>
                             </div>
                         </div>
                     </div>
