@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import AdminDashboard from './AdminDashboard';
 
 export default function SearchEmployee() {
     let [sort, setSort] = useState("name");
@@ -75,6 +76,7 @@ export default function SearchEmployee() {
     }
     return (
         <div>
+            <AdminDashboard/>
             <div>
                 <h1>Search Employee</h1>
                 <form onSubmit={Fetch}>

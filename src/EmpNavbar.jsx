@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Navbar() {
+export default function EmpNavbar() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-primary">
@@ -14,13 +14,15 @@ export default function Navbar() {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
               <li className="nav-item"><Link to={"/home"} className="nav-link active text-light fs-5" aria-current="page">Home</Link></li>
-              <li className="nav-item"><Link to={"/add"} className="nav-link text-light fs-5" aria-current="page">Add Employee</Link></li>
-              <li className="nav-item"><Link to={"/all"} className="nav-link text-light fs-5" aria-current="page">All Employee</Link></li>
               <li className="nav-item"><Link to={"/about_us"} className="nav-link text-light fs-5" aria-current="page">About us</Link></li>
               <li className="nav-item"><Link to={"/Contact_us"} className="nav-link text-light fs-5" aria-current="page">Contact us</Link></li>
               <li className="nav-item"><Link to={"/services"} className="nav-link text-light fs-5" aria-current="page">Our service</Link></li>
-              
               <li className="nav-item"><Link to={"/search"} className="nav-link text-light fs-5" aria-current="page">Search Employee</Link></li>
+              <li className="nav-item"><Link to={"/login"} className="nav-link text-light fs-5" aria-current="page">Login</Link></li>
+              <li className="nav-item"><Link to={"/register"} className="nav-link text-light fs-5" aria-current="page">Register</Link></li>
+              {/* About */}
+              {/* Contact us */}
+              {/* Our /servie */}
 
             </ul>
             <form className="d-flex">
@@ -33,3 +35,5 @@ export default function Navbar() {
     </div>
   )
 }
+
+// seraching byfirstName,lastname

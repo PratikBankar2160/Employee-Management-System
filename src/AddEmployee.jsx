@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useState } from 'react';
+import AdminDashboard from './AdminDashboard';
 
 export default function AddEmployee() {
 
@@ -58,6 +59,7 @@ export default function AddEmployee() {
 
     return (
         <div>
+            <AdminDashboard/>
             <div className="container">
                 <div className="card form-card shadow-sm">
                     <div className="card-body">
