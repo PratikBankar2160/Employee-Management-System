@@ -217,11 +217,12 @@ let navigate = useNavigate();
     e.preventDefault();
     axios.post("http://localhost:8080/login",loginData)
     .then((res)=>{
-      if(res.data.role === "Employee"){
-        navigate("/employeeDashboard")
+      if(res.data.role === "Admin"){
+        navigate("/home")
       }else{
-        navigate("/home");
+        navigate("/employeeDashboard");
       }
+      localStorage.setItem("userInfo",JSON.stringify(res.data))
     })
     .catch((err)=>{
       if(err.response){

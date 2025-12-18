@@ -18,6 +18,8 @@ import EmployeeContactUs from './EmployeeContactUs';
 import EmployeeServices from './EmployeeServices';
 import EmployeeAboutUs from './EmployeeAboutUs';
 import EmployeeHome from './EmployeeHome';
+import LeaveApplication from './LeaveApplication';
+import ShowLeave from './ShowLeave';
 
 function App() {
   return (
@@ -38,7 +40,9 @@ function App() {
           <Route path='/services' element={<Service></Service>}></Route>
           <Route path='/Eservices' element={<EmployeeServices></EmployeeServices>}></Route>
           <Route path='/employeeDashboard' element={<EmployeeDashboard></EmployeeDashboard>}></Route>
+          <Route path='/leave' element={<LeaveApplication></LeaveApplication>}></Route>
           <Route path='/register' element={<Register></Register>}></Route>
+          <Route path='/seeLeave' element={<ShowLeave></ShowLeave>}></Route>
           <Route path="*" element={<h1>404 Page not found</h1>} />
         </Routes>
         

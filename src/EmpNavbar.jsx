@@ -20,6 +20,8 @@ export default function EmpNavbar() {
               <li className="nav-item"><Link to={"/empContactUs"} className="nav-link text-light fs-5" aria-current="page">Contact us</Link></li>
               <li className="nav-item"><Link to={"/Eservices"} className="nav-link text-light fs-5" aria-current="page">Our service</Link></li>
               <li className="nav-item"><Link to={"/register"} className="nav-link text-light fs-5" aria-current="page">Register</Link></li>
+              <li className="nav-item"><Link to={"/leave"} className="nav-link text-light fs-5" aria-current="page">Leave</Link></li>
+              <li className="nav-item"><Link to={"/seeLeave"} className="nav-link text-light fs-5" aria-current="page">See Leave</Link></li>
               {/* About */}
               {/* Contact us */}
               {/* Our /servie */}
