@@ -1,13 +1,11 @@
 import './App.css';
 import AddEmployee from './AddEmployee';
-import { FaLock, FaEnvelope, FaSignInAlt } from "react-icons/fa";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AllEmployee from './AllEmployee';
 import UpdateEmployee from './UpdateEmployee';
 import SearchEmployee from './SearchEmployee';
-import AdminDashboard from './AdminDashboard';
 import About_us from './About_us';
 import Contact_us from './Contact_us';
 import Service from './Service';
@@ -21,6 +19,7 @@ import EmployeeHome from './EmployeeHome';
 import LeaveApplication from './LeaveApplication';
 import ShowLeave from './ShowLeave';
 import UpdateLeaveApplication from './UpdateLeaveApplication';
+import EmployeeLeaves from './EmployeeLeaves';
 import Logout from './Logout';
 
 function App() {
@@ -47,6 +46,7 @@ function App() {
           <Route path='/register' element={<Register></Register>}></Route>
           <Route path='/seeLeave' element={<ShowLeave></ShowLeave>}></Route>
           <Route path='/updateLeave/:id' element={<UpdateLeaveApplication></UpdateLeaveApplication>}></Route>
+          <Route path='/employeeLeaves' element={<EmployeeLeaves></EmployeeLeaves>}></Route>
           <Route path='/logout' element={<Logout></Logout>}></Route>
           <Route path="*" element={<h1>404 Page not found</h1>} />
         </Routes>

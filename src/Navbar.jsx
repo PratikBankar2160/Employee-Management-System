@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Logout from './Logout'
 
 export default function Navbar() {
   return (
@@ -21,11 +22,11 @@ export default function Navbar() {
               <li className="nav-item"><Link to={"/services"} className="nav-link text-light fs-5" aria-current="page">Our service</Link></li>
               
               <li className="nav-item"><Link to={"/search"} className="nav-link text-light fs-5" aria-current="page">Search Employee</Link></li>
+              <li className="nav-item"><Link to={"/employeeLeaves"} className="nav-link text-light fs-5" aria-current="page">Employee leaves</Link></li>
 
             </ul>
             <form className="d-flex">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-              <button className="btn btn-outline-success text-light fs-5" type="submit">Search</button>
+              <Logout></Logout>
             </form>
           </div>
         </div>
