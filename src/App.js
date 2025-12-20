@@ -20,6 +20,8 @@ import EmployeeAboutUs from './EmployeeAboutUs';
 import EmployeeHome from './EmployeeHome';
 import LeaveApplication from './LeaveApplication';
 import ShowLeave from './ShowLeave';
+import UpdateLeaveApplication from './UpdateLeaveApplication';
+import Logout from './Logout';
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
       <BrowserRouter>
       
         <Routes>
+          <Route path='/' element={<Register></Register>}></Route>
           <Route path='/home' element={<Home></Home>}></Route>
           <Route path='/Ehome' element={<EmployeeHome></EmployeeHome>}></Route>
           <Route path='/add' element={<AddEmployee></AddEmployee>}></Route>
@@ -43,6 +46,8 @@ function App() {
           <Route path='/leave' element={<LeaveApplication></LeaveApplication>}></Route>
           <Route path='/register' element={<Register></Register>}></Route>
           <Route path='/seeLeave' element={<ShowLeave></ShowLeave>}></Route>
+          <Route path='/updateLeave/:id' element={<UpdateLeaveApplication></UpdateLeaveApplication>}></Route>
+          <Route path='/logout' element={<Logout></Logout>}></Route>
           <Route path="*" element={<h1>404 Page not found</h1>} />
         </Routes>
         

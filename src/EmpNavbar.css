@@ -1,0 +1,26 @@
+.nav-link.active {
+  font-weight: bold;
+  border-bottom: 2px solid #ffc107;
+}
+
+.navbar {
+  padding: 12px 20px;
+}
+
+.navbar-brand {
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #050505 !important;
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
+  font-weight: bold;
+  border-bottom: 2px solid #ffc107;
+}

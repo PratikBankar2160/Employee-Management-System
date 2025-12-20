@@ -1,41 +1,82 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import EmployeeAboutUs from './EmployeeAboutUs'
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import Logout from "./Logout";
+import "./EmpNavbar.css";
+
 
 export default function EmpNavbar() {
   return (
-    <div>
-      
-      <nav className="navbar navbar-expand-lg navbar-light bg-primary">
-        <div className="container-fluid">
-          <a className="navbar-brand text-warning fs-3" href="/">EmPower</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+      <div className="container-fluid">
 
-              <li className="nav-item"><Link to={"/Ehome"} className="nav-link active text-light fs-5" aria-current="page">Home</Link></li>
-              <li className="nav-item"><Link to={"/Eabout_us"} className="nav-link text-light fs-5" aria-current="page">About us</Link></li>
-              <li className="nav-item"><Link to={"/empContactUs"} className="nav-link text-light fs-5" aria-current="page">Contact us</Link></li>
-              <li className="nav-item"><Link to={"/Eservices"} className="nav-link text-light fs-5" aria-current="page">Our service</Link></li>
-              <li className="nav-item"><Link to={"/register"} className="nav-link text-light fs-5" aria-current="page">Register</Link></li>
-              <li className="nav-item"><Link to={"/leave"} className="nav-link text-light fs-5" aria-current="page">Leave</Link></li>
-              <li className="nav-item"><Link to={"/seeLeave"} className="nav-link text-light fs-5" aria-current="page">See Leave</Link></li>
-              {/* About */}
-              {/* Contact us */}
-              {/* Our /servie */}
+        {/* Brand */}
+        <NavLink to="/" className="navbar-brand fw-bold fs-3 text-warning">
+          EmPower
+        </NavLink>
 
-            </ul>
-            <form className="d-flex">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-              <button className="btn btn-outline-success text-light fs-5" type="submit">Search</button>
-            </form>
-          </div>
+        {/* Toggle */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* Links */}
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
+
+            <li className="nav-item">
+              <NavLink to="/Ehome" className="nav-link fs-5">
+                Home
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink to="/Eabout_us" className="nav-link fs-5">
+                About Us
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink to="/empContactUs" className="nav-link fs-5">
+                Contact Us
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink to="/Eservices" className="nav-link fs-5">
+                Our Services
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink to="/leave" className="nav-link fs-5">
+                Apply Leave
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink to="/seeLeave" className="nav-link fs-5">
+                My Leaves
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink to="/employeeDashboard" className="nav-link fs-5">
+                My Dashboard
+              </NavLink>
+            </li>
+          </ul>
+
+          {/* Logout */}
+          <form className="d-flex">
+            <Logout></Logout>
+          </form>
         </div>
-      </nav>
-    </div>
-  )
+      </div>
+    </nav>
+  );
 }
-
-// seraching byfirstName,lastname
