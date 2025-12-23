@@ -25,7 +25,7 @@ import Logout from './Logout';
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
       
         <Routes>
           <Route path='/' element={<Register></Register>}></Route>
@@ -51,7 +51,7 @@ function App() {
           <Route path="*" element={<h1>404 Page not found</h1>} />
         </Routes>
         
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
     </div>
   );
 }

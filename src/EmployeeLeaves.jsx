@@ -3,19 +3,57 @@ import Navbar from './Navbar'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
+import "./LeaveButtonStatus.css"
 
 export default function EmployeeLeaves() {
     let [Leaves, setLeaves] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/leave/all")
-            .then((res) => {
-                setLeaves(res.data);
+        fetchLeaves("All");
+    }, []);
+
+    const fetchLeaves = (action) => {
+        let url = "http://localhost:8080/leave/";
+
+        switch (action) {
+            case "All":
+                url += "all";
+                break;
+            case "Pending":
+                url += "pendingLeaves";
+                break;
+            case "Approved":
+                url += "approvedLeaves";
+                break;
+            case "Rejected":
+                url += "rejectedLeaves";
+                break;
+            default:
+                return;
+        }
+
+        axios.get(url)
+            .then(res => setLeaves(Array.isArray(res.data) ? res.data : []))
+            .catch(err => {
+                setLeaves([]);
+            });
+    };
+
+    const sortLeave = (action) => {
+        fetchLeaves(action);
+    };
+
+    const changeStatus = (leaveid, action) => {
+        axios.put(`http://localhost:8080/leave/status/${leaveid}/${action}`)
+            .then(() => {
+                setLeaves(prev =>
+                    prev.map(l =>
+                        l.id === leaveid ? { ...l, status: action } : l
+                    )
+                );
             })
-            .catch((err) => {
-                alert("Error while fetching leaves.")
-            })
-    }, [])
+            .catch(err => console.error(err));
+    };
 
     return (
         <div>
@@ -23,8 +61,22 @@ export default function EmployeeLeaves() {
             <div className="container mt-5">
                 <div className="card shadow-lg">
                     <div className="card-body">
-
                         <h3 className="text-center fw-bold mb-4">Leave Requests</h3>
+
+                        <div className="status-buttons">
+                            <button className="status-button all" onClick={() => sortLeave("All")}>
+                                <i>🔍</i> ALL
+                            </button>
+                            <button className="status-button pending" onClick={() => sortLeave("Pending")}>
+                                <i>⏳</i> PENDING
+                            </button>
+                            <button className="status-button approved" onClick={() => sortLeave("Approved")}>
+                                <i>✅</i> APPROVED
+                            </button>
+                            <button className="status-button rejected" onClick={() => sortLeave("Rejected")}>
+                                <i>❌</i> REJECTED
+                            </button>
+                        </div>
 
                         <div className="table-responsive">
                             <table className="table table-bordered table-hover text-center align-middle">
@@ -41,7 +93,6 @@ export default function EmployeeLeaves() {
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     {Leaves.length > 0 ? (
                                         Leaves.map((leave) => (
@@ -53,7 +104,6 @@ export default function EmployeeLeaves() {
                                                 <td className="text-start">{leave.reason}</td>
                                                 <td>{leave.fromdate}</td>
                                                 <td>{leave.todate}</td>
-
                                                 <td>
                                                     <span
                                                         className={`badge px-3 py-2 ${leave.status === "Approved"
@@ -69,14 +119,35 @@ export default function EmployeeLeaves() {
                                                 <td>
                                                     {leave.status === "Pending" ? (
                                                         <>
-                                                            <button className="btn btn-success me-2">Approve</button>
-                                                            <button className="btn btn-danger">Reject</button>
+                                                            <button
+                                                                className="btn btn-success me-2"
+                                                                onClick={() => changeStatus(leave.id, "Approved")}
+                                                            >
+                                                                Approve
+                                                            </button>
+                                                            <button
+                                                                className="btn btn-danger"
+                                                                onClick={() => changeStatus(leave.id, "Rejected")}
+                                                            >
+                                                                Reject
+                                                            </button>
                                                         </>
                                                     ) : leave.status === "Approved" ? (
-                                                        <button className="btn btn-danger">Reject</button>
-                                                    ) :
-                                                        <button className="btn btn-success">Approve</button>
-                                                    }
+                                                        <button
+                                                            className="btn btn-danger"
+                                                            onClick={() => changeStatus(leave.id, "Rejected")}
+                                                        >
+                                                            Reject
+                                                        </button>
+                                                    ) : (
+                                                        <button
+                                                            className="btn btn-success"
+                                                            onClick={() => changeStatus(leave.id, "Approved")}
+                                                        >
+                                                            Approve
+                                                        </button>
+                                                    )}
+
                                                 </td>
                                             </tr>
                                         ))
@@ -90,11 +161,9 @@ export default function EmployeeLeaves() {
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
