@@ -3,6 +3,8 @@ package Com.Controller;
 import Com.Entity.LeaveApplication;
 import Com.Service.LeaveApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,6 +56,33 @@ public class LeaveApplicationController {
             @PathVariable int leaveid,
             @PathVariable String action) {
         return service.updateLeaveStatus(leaveid, action);
+    }
+
+    @GetMapping("/approvedLeaves")
+    public ResponseEntity<?> findApprovedLeaves(){
+        List<LeaveApplication> ApprovedLeaves = service.findApprovedLeaves();
+
+        return ApprovedLeaves.isEmpty() ?
+                ResponseEntity.status(HttpStatus.NOT_FOUND).body("Can not find any approved leave")
+                :ResponseEntity.status(HttpStatus.OK).body(ApprovedLeaves);
+    }
+
+    @GetMapping("/rejectedLeaves")
+    public ResponseEntity<?> findRejectedLeaves(){
+        List<LeaveApplication> RejectedLeaves = service.findRejectedLeaves();
+
+        return RejectedLeaves.isEmpty() ?
+                ResponseEntity.status(HttpStatus.NOT_FOUND).body("Can not find any rejected leave")
+                :ResponseEntity.status(HttpStatus.OK).body(RejectedLeaves);
+    }
+
+    @GetMapping("/pendingLeaves")
+    public ResponseEntity<?> findPendingLeaves(){
+        List<LeaveApplication> PendingLeaves = service.findPendingLeaves();
+
+        return PendingLeaves.isEmpty() ?
+                ResponseEntity.status(HttpStatus.NOT_FOUND).body("Can not find any pending leave")
+                :ResponseEntity.status(HttpStatus.OK).body(PendingLeaves);
     }
 }
 

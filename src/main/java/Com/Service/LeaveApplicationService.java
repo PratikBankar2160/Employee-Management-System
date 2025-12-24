@@ -41,20 +41,25 @@ public class LeaveApplicationService {
         return repo.save(leave);
     }
 
-
     public LeaveApplication updateLeaveStatus(int leaveid, String action) {
-        LeaveApplication leave = repo
-                .findById(leaveid)
+
+        LeaveApplication leave = repo.findById(leaveid)
                 .orElseThrow(() -> new RuntimeException("Leave not found"));
 
-        if (action.equalsIgnoreCase("approve")) {
-            leave.setStatus("Approved");
-        } else if (action.equalsIgnoreCase("reject")) {
-            leave.setStatus("Rejected");
-        }
+        leave.setStatus(action); // 🔥 DIRECTLY SET
 
         return repo.save(leave);
     }
 
+    public List<LeaveApplication> findApprovedLeaves(){
+        return repo.findApprovedLeaves();
+    }
 
+    public List<LeaveApplication> findRejectedLeaves(){
+        return repo.findRejectedLeaves();
+    }
+
+    public List<LeaveApplication> findPendingLeaves(){
+        return repo.findPendingLeaves();
+    }
 }
