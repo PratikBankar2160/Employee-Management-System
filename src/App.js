@@ -21,6 +21,7 @@ import ShowLeave from './ShowLeave';
 import UpdateLeaveApplication from './UpdateLeaveApplication';
 import EmployeeLeaves from './EmployeeLeaves';
 import Logout from './Logout';
+import Profile from './Profile';
 
 function App() {
   return (

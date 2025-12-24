@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Logout from './Logout'
+import Profile from './Profile'
 
 export default function Navbar() {
   return (
@@ -28,6 +29,8 @@ export default function Navbar() {
             <form className="d-flex">
               <Logout></Logout>
             </form>
+            <Profile></Profile>
+            
           </div>
         </div>
       </nav>
