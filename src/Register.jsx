@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 function Register() {
 
+  const app = process.env.REACT_APP_API_URL;
+
 let navigate = useNavigate();
 
   let [firstname, setFirstname] = useState("");
@@ -95,7 +97,7 @@ let navigate = useNavigate();
       setLoading(true);
 
 
-      let response = await axios.post("http://localhost:8080/register",user);
+      let response = await axios.post(`${app}/register`,user);
 
       if (response.data === "This username already exists...Please try another username") {
         setError("❌ This username already exists");
@@ -118,7 +120,7 @@ let navigate = useNavigate();
 
   let userLogin = ((e)=>{
     e.preventDefault();
-    axios.post("http://localhost:8080/login",loginData)
+    axios.post(`${app}/login`,loginData)
     .then((res)=>{
       if(res.data.role === "Admin"){
         navigate("/home")

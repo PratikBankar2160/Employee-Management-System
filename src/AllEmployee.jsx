@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import AdminDashboard from './AdminDashboard';
 
 export default function AllEmployee() {
+    const app = process.env.REACT_APP_API_URL;
 
     let [searchResult, setSearchResult] = useState([]);
     const [searchFirstName, setSearchFirstName] = useState("");
@@ -15,13 +16,13 @@ export default function AllEmployee() {
     let [Employee, setEmployee] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/all")
+        axios.get(`${app}/all`)
             .then((res) => setEmployee(res.data))
             .catch(() => alert("Error"));
     }, []);
 
     let Delete1 = (id) => {
-        axios.delete(`http://localhost:8080/deleteById/${id}`)
+        axios.delete(`${app}/deleteById/${id}`)
             .then(() => {
                 alert("Deleted Successfully");
                 setEmployee(Employee.filter((emp) => emp.eid !== id));
@@ -33,7 +34,7 @@ export default function AllEmployee() {
     };
 
     let searchByFirstName = (e) => {
-        axios.get(`http://localhost:8080/findByFirstName/${searchFirstName}`)
+        axios.get(`${app}/findByFirstName/${searchFirstName}`)
             .then((res) => {
                 setSearchResult(res.data)
                 console.log(res.data);
@@ -45,7 +46,7 @@ export default function AllEmployee() {
             })
     }
     let searchBySurname = (e) => {
-        axios.get(`http://localhost:8080/findByLastName/${searchLastName}`)
+        axios.get(`${app}/findByLastName/${searchLastName}`)
             .then((res) => {
                 setSearchResult(res.data)
                 console.log(res.data);
@@ -56,7 +57,7 @@ export default function AllEmployee() {
             })
     }
     let searchByDepartment = (e) => {
-        axios.get(`http://localhost:8080/findByDepartment/${searchDepartment}`)
+        axios.get(`${app}/findByDepartment/${searchDepartment}`)
             .then((res) => {
                 setSearchResult(res.data)
                 console.log(res.data);
@@ -67,7 +68,7 @@ export default function AllEmployee() {
             })
     }
     let searchByDesignation = (e) => {
-        axios.get(`http://localhost:8080/findByDesignation/${serachDesignation}`)
+        axios.get(`${app}/findByDesignation/${serachDesignation}`)
             .then((res) => {
                 setSearchResult(res.data)
                 console.log(res.data);

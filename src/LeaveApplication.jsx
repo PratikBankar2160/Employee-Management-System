@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function LeaveApplication() {
 
+    const app = process.env.REACT_APP_API_URL;
+
     let navigate = useNavigate();
 
     let [data, setData] = useState({
@@ -25,7 +27,7 @@ export default function LeaveApplication() {
     let ApplyLeave = ((e) => {
         e.preventDefault();
 
-        axios.post("http://localhost:8080/leave/apply", data)
+        axios.post(`${app}/leave/apply`, data)
             .then((res) => {
                 alert("Leave added successfully.!")
                 navigate("/seeLeave")

@@ -7,6 +7,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function UpdateLeaveApplication() {
+
+    const app = process.env.REACT_APP_API_URL;
     let { id } = useParams();
     let navigate = useNavigate();
     let [data, setData] = useState([]);
@@ -29,7 +31,7 @@ export default function UpdateLeaveApplication() {
 
     let UpdateLeave = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:8080/leave/update/${id}`,data)
+        axios.put(`${app}/leave/update/${id}`,data)
             .then((res) => {
                 alert("Leave update successfully.!")
                 navigate("/seeLeave")

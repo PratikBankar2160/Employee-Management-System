@@ -4,6 +4,8 @@ import EmpNavbar from "./EmpNavbar";
 
 export default function ShowLeave() {
 
+    const app = process.env.REACT_APP_API_URL;
+
     // ================= STATES =================
     const [leaves, setLeaves] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -20,7 +22,7 @@ export default function ShowLeave() {
         const user = JSON.parse(localStorage.getItem("userInfo"));
 
         axios
-            .get(`http://localhost:8080/leave/employee/${user.eid}`)
+            .get(`${app}/leave/employee/${user.eid}`)
             .then((res) => setLeaves(res.data))
             .catch(() => alert("Something went wrong while fetching leaves"));
     }, []);
@@ -50,7 +52,7 @@ export default function ShowLeave() {
 
         axios
             .put(
-                `http://localhost:8080/leave/update/${selectedLeave.id}`,
+                `${app}/leave/update/${selectedLeave.id}`,
                 selectedLeave
             )
             .then(() => {
@@ -73,7 +75,7 @@ export default function ShowLeave() {
         if (!window.confirm("Are you sure you want to delete this leave?")) return;
 
         axios
-            .delete(`http://localhost:8080/leave/cancel/${id}`)
+            .delete(`${app}/leave/cancel/${id}`)
             .then(() => {
                 setLeaves((prev) => prev.filter((l) => l.id !== id));
             })

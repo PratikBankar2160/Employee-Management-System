@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 export default function UpdateEmployee() {
 
+    const app = process.env.REACT_APP_API_URL;
+
     let { id } = useParams();
 
     let navigate = useNavigate();
@@ -53,7 +55,7 @@ export default function UpdateEmployee() {
 
         e.preventDefault();
 
-        axios.put(`http://localhost:8080/updateById/${id}`, employee)
+        axios.put(`${app}/updateById/${id}`, employee)
             .then((res) => {
                 setEmployee(res.data);
                 alert(res.data)
@@ -65,7 +67,7 @@ export default function UpdateEmployee() {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/findById/${id}`)
+        axios.get(`${app}/findById/${id}`)
             .then((res) => {
                 setEmployee(res.data)
             })

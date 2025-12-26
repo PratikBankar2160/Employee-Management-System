@@ -5,6 +5,8 @@ import AdminDashboard from './AdminDashboard';
 
 export default function AddEmployee() {
 
+    const app = process.env.REACT_APP_API_URL;
+
     const [employee, setEmployee] = useState({
         firstname: "",
         lastname: "",
@@ -47,7 +49,7 @@ export default function AddEmployee() {
     const save = (e) => {
         e.preventDefault();
 
-        axios.post("http://localhost:8080/add", employee)
+        axios.post(`${app}/add`, employee)
             .then((res) => {
                 alert("Success");
             })

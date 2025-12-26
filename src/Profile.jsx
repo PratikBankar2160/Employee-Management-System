@@ -7,6 +7,8 @@ import axios from "axios";
 
 export default function Profile() {
 
+
+    const app = process.env.REACT_APP_API_URL;
     useEffect(()=>{
         handelChange();
     })
@@ -15,7 +17,7 @@ export default function Profile() {
         let user = JSON.parse(localStorage.getItem("userInfo"))
         console.log(user);
         
-        axios.get(`http://localhost:8080/findById/${user.uid}`)
+        axios.get(`${app}/findById/${user.uid}`)
         .then((res)=>{
             console.log(res.data);
             

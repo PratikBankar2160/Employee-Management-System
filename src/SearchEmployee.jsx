@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import AdminDashboard from './AdminDashboard';
 
 export default function SearchEmployee() {
+
+    const app = process.env.REACT_APP_API_URL;
     let [sort, setSort] = useState("name");
 
     let navigate = useNavigate();
@@ -18,7 +20,7 @@ export default function SearchEmployee() {
     };
 
     let Delete1 = (id) => {
-        axios.delete(`http://localhost:8080/deleteById/${id}`)
+        axios.delete(`${app}/deleteById/${id}`)
             .then(() => {
                 alert("Deleted Successfully");
                 setEmployee(Employee.filter((emp) => emp.eid !== id));
@@ -38,7 +40,7 @@ export default function SearchEmployee() {
 
         if (sort === "Surname") {
 
-            axios.get(`http://localhost:8080/findByLastName/${name}`)
+            axios.get(`${app}/findByLastName/${name}`)
                 .then((res) => {
                     setEmployee(res.data);
                 })
@@ -47,7 +49,7 @@ export default function SearchEmployee() {
                 })
         } else if (sort === "Department") {
 
-            axios.get(`http://localhost:8080/findByDepartment/${name}`)
+            axios.get(`${app}/findByDepartment/${name}`)
                 .then((res) => {
                     setEmployee(res.data);
                 })
@@ -56,7 +58,7 @@ export default function SearchEmployee() {
                 })
         } else if (sort === "Designation") {
 
-            axios.get(`http://localhost:8080/findByDesignation/${name}`)
+            axios.get(`${app}/findByDesignation/${name}`)
                 .then((res) => {
                     setEmployee(res.data);
                 })
@@ -65,7 +67,7 @@ export default function SearchEmployee() {
                 })
         } else {
 
-            axios.get(`http://localhost:8080/findByFirstName/${name}`)
+            axios.get(`${app}/findByFirstName/${name}`)
                 .then((res) => {
                     setEmployee(res.data);
                 })

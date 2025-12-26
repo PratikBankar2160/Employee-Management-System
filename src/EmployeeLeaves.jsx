@@ -6,6 +6,7 @@ import axios from 'axios'
 import "./LeaveButtonStatus.css"
 
 export default function EmployeeLeaves() {
+    const app = process.env.REACT_APP_API_URL;
     let [Leaves, setLeaves] = useState([]);
 
     useEffect(() => {
@@ -13,7 +14,7 @@ export default function EmployeeLeaves() {
     }, []);
 
     const fetchLeaves = (action) => {
-        let url = "http://localhost:8080/leave/";
+        let url = `${app}/leave`;
 
         switch (action) {
             case "All":
@@ -44,7 +45,7 @@ export default function EmployeeLeaves() {
     };
 
     const changeStatus = (leaveid, action) => {
-        axios.put(`http://localhost:8080/leave/status/${leaveid}/${action}`)
+        axios.put(`${app}/leave/status/${leaveid}/${action}`)
             .then(() => {
                 setLeaves(prev =>
                     prev.map(l =>
